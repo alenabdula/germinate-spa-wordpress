@@ -1,0 +1,14 @@
+{
+  "name": "alenabdula/germinate-spa",
+  "authors": [
+    {
+      "name": "Alen Abdula",
+      "email": "alenabdula@gmail.com"
+    }
+  ],
+  "autoload": {
+    "classmap": ["includes/"]
+  },
+  "require": {},
+  "require-dev": {}
+}
