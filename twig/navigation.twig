@@ -1,0 +1,10 @@
+<nav>
+  <ul>
+  {% for item in menu.get_items %}
+    <li>
+      <a v-link="{ name: 'page', params: { id: {{ item.ID }}, slug: {{ item.slug }} } }"
+         href="{{item.get_link}}">{{item.title}}</a>
+    </li>
+  {% endfor %}
+  </ul>
+</nav>

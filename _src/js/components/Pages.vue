@@ -7,7 +7,7 @@
 </style>
 
 <template>
-  <h2>Articles</h2>
+  <h2>Pages</h2>
   <div class="page">
     <div class="left">
       <div v-for="post in posts">
@@ -36,7 +36,7 @@ export default {
   },
   methods : {
     getPosts () {
-      this.$http.get('wp-json/wp/v2/posts').then(function (response) {
+      this.$http.get('wp-json/wp/v2/pages/:slug').then(function (response) {
         console.log(response.data);
         this.$set('posts', response.data);
         this.showSingle(response.data[0]);

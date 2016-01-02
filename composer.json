@@ -7,8 +7,12 @@
     }
   ],
   "autoload": {
-    "classmap": ["includes/"]
+    "classmap": [
+      "includes/",
+      "wp-content/plugins/"
+    ]
   },
-  "require": {},
-  "require-dev": {}
+  "require": {
+    "jarednova/timber": "^0.22.4"
+  }
 }
