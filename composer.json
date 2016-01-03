@@ -8,11 +8,7 @@
   ],
   "autoload": {
     "classmap": [
-      "includes/",
-      "wp-content/plugins/"
+      "includes/"
     ]
-  },
-  "require": {
-    "jarednova/timber": "^0.22.4"
   }
 }

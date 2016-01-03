@@ -1,8 +1,6 @@
 <?php
 /* Autoloader */
 require __DIR__ . '/vendor/autoload.php';
-/* Timber Support */
-new GerminateTimberSupport();
 /* Remove fucking Emojis */
 new GerminateRemoveEmoji();
 /* Theme Support */

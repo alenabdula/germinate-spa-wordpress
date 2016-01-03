@@ -7,23 +7,66 @@ class GerminateApiRoutes {
   }
 
   function register_api_routes() {
-    $this->get_all_content();
+    $this->query_home();
+    $this->query_pages();
+    $this->query_posts();
   }
 
-  function get_all_content() {
-    register_rest_route( 'wp/v2', '/content', [
+  function query_home() {
+    register_rest_route( 'wp/v2', '/home', [
       'methods' => 'GET',
-      'callback' => [$this, 'get_all_content_callback']
+      'callback' => [$this, 'query_home_callback']
       ]
     );
   }
 
-  function get_all_content_callback($data) {
+  function query_home_callback() {
     $query = new WP_Query([
       'posts_per_page' => '-1',
-      'post_type'      => ['post', 'page'],
+      'post_type'      => ['page'],
+      'name'           => 'home',
     ]);
-    $data = [];
+    $data = $this->prepare($query, $data = []);
+    return new WP_REST_Response($data);
+  }
+
+  function query_pages() {
+    register_rest_route( 'wp/v2', '/pages', [
+      'methods' => 'GET',
+      'callback' => [$this, 'query_pages_callback']
+      ]
+    );
+  }
+
+  function query_pages_callback() {
+    $exclude = get_page_by_path('home', OBJECT, 'page');
+    $query = new WP_Query([
+      'posts_per_page' => '-1',
+      'post__not_in'   => [$exclude->ID],
+      'post_type'      => ['page'],
+    ]);
+    $data = $this->prepare($query, $data = []);
+    return new WP_REST_Response($data);
+  }
+
+  function query_posts() {
+    register_rest_route( 'wp/v2', '/posts', [
+      'methods' => 'GET',
+      'callback' => [$this, 'query_posts_callback']
+      ]
+    );
+  }
+
+  function query_posts_callback($data) {
+    $query = new WP_Query([
+      'posts_per_page' => '-1',
+      'post_type'      => ['post'],
+    ]);
+    $data = $this->prepare($query, $data = []);
+    return new WP_REST_Response($data);
+  }
+
+  private function prepare($query, $data) {
     foreach ($query->posts as $key => $post) {
       $data[$key] = $post;
       $data[$key]->post_content = apply_filters('the_content', $post->post_content);
@@ -31,7 +74,7 @@ class GerminateApiRoutes {
       $data[$key]->thumb_url = $this->get_post_thumbnail_src($post->ID);
       $data[$key]->thumb_alt = $this->get_post_thumbnail_alt($post->ID);
     }
-    return new WP_REST_Response($data);
+    return $data;
   }
 
   private function get_post_thumbnail_alt($post_id) {
