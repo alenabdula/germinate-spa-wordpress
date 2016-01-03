@@ -16,8 +16,6 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.12/vue.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/vue-resource/0.5.1/vue-resource.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/vue-router/0.7.7/vue-router.js"></script>
-    <!-- WP_HEAD() -->
     <?php wp_head(); ?>
-    <!-- WP_HEAD() -->
   </head>
   <body>

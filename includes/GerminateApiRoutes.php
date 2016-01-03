@@ -31,19 +31,7 @@ class GerminateApiRoutes {
       $data[$key]->thumb_url = $this->get_post_thumbnail_src($post->ID);
       $data[$key]->thumb_alt = $this->get_post_thumbnail_alt($post->ID);
     }
-    $data['categories'] = get_categories();
     return new WP_REST_Response($data);
-  }
-
-  private function prepare_data($query, $data) {
-    $data = [];
-    foreach ($query->posts as $key => $post) {
-      $data[$key] = $post;
-      $data[$key]->post_content = apply_filters('the_content', $post->post_content);
-      $data[$key]->thumb_url = $this->get_post_thumbnail_src($post->ID);
-      $data[$key]->thumb_alt = $this->get_post_thumbnail_alt($post->ID);
-    }
-    return $data;
   }
 
   private function get_post_thumbnail_alt($post_id) {

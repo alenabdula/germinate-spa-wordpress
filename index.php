@@ -1,9 +1,5 @@
-<?php
-get_header();
-$context = Timber::get_context();
-Timber::render( 'navigation.twig', $context );
-?>
+<?php get_header(); ?>
 <div id="app">
-  <component :is="currentView"></component>
+  <router-view :content="content" :single="single" keep-alive></router-view>
 </div>
 <?php get_footer(); ?>
