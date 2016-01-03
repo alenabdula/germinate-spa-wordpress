@@ -1,56 +1,46 @@
-/**
- * Page Component
- */
+Vue.config.debug = true;
+
 var Page = require('./components/Page.vue');
 Vue.component('Page', Page);
+
+var Article = require('./components/Article.vue');
+Vue.component('Article', Article);
 
 /**
  * Vue Router
  */
-var router = new VueRouter({});
+var router = new VueRouter({
+  history: true,
+});
 
 /**
  * Application Component
  */
 var App = Vue.extend({
-  data : function() {
+  data: function() {
     return {
       single: false,
       pages: false,
-      posts: false,
+      articles: false,
     }
-  },
-  ready: function() {
-    this.get_content('pages');
-    this.get_content('posts');
-    this.set_home();
-  },
-  methods: {
-    set_home: function() {
-      console.log(this.$data);
-    },
-    viewSingle: function(item) {
-      this.single = [item];
-    },
-    get_content: function (type) {
-      this.$http.get('wp-json/wp/v2/' + type).then(function (response) {
-        this.$set(type, response.data);
-      }, function (response) {
-        console.error('master.js', response.data);
-      });
-    },
   }
-
 });
 
 /**
  * Application Routes
  */
 router.map({
-    '/:slug': {
+    '/': {
         component: Page,
         name: 'page'
+    },
+    '/articles': {
+        component: Article,
+        name: 'article'
     }
+});
+router.redirect({
+  '*': '/',
 });
 
 router.start(App, '#app');

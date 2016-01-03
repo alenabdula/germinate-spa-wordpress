@@ -1,20 +1,25 @@
 <?php get_header(); ?>
 <div id="app">
-  <nav>
     <ul>
-      <li v-for="page in pages">
-        <a @click.prevent="viewSingle(page)"
-           v-link="{ name: 'page', params: { slug: page.post_name } }"
-           href="#">{{ page.post_title }}</a>
+      <li v-show="pages" v-for="page in pages">
+        <a @click.prevent="this.single = page"
+           v-link="{ name: 'page' }"
+           href="#"
+        >{{ page.post_title }}</a>
+      </li>
+      <li>
+        <a v-link="{ name: 'article' }" href="#">Articles</a>
+        <ul>
+          <li v-for="article in articles">
+            <a @click.prevent="this.single = article" href="#">{{ article.post_title }}</a>
+          </li>
+        </ul>
       </li>
     </ul>
-  </nav>
-  <router-view
-    :home="home"
-    :pages="pages"
-    :posts="posts"
-    :single="single"
-    keep-alive>
-  </router-view>
+    <router-view keep-alive
+                 :pages.sync="pages"
+                 :single.sync="single"
+                 :articles.sync="articles"
+    ></router-view>
 </div>
 <?php get_footer(); ?>

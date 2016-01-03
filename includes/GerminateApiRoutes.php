@@ -39,8 +39,10 @@ class GerminateApiRoutes {
   }
 
   function query_pages_callback() {
-    $exclude = get_page_by_path('home', OBJECT, 'page');
+    // $exclude = get_page_by_path('home', OBJECT, 'page');
     $query = new WP_Query([
+      'order'          => 'ASC',
+      'orderby'        => 'menu_order',
       'posts_per_page' => '-1',
       // 'post__not_in'   => [$exclude->ID],
       'post_type'      => ['page'],
