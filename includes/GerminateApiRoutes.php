@@ -42,7 +42,7 @@ class GerminateApiRoutes {
     $exclude = get_page_by_path('home', OBJECT, 'page');
     $query = new WP_Query([
       'posts_per_page' => '-1',
-      'post__not_in'   => [$exclude->ID],
+      // 'post__not_in'   => [$exclude->ID],
       'post_type'      => ['page'],
     ]);
     $data = $this->prepare($query, $data = []);
