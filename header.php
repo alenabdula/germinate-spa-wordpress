@@ -15,7 +15,13 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.12/vue.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/vue-resource/0.5.1/vue-resource.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/vue-router/0.7.7/vue-router.js"></script>
     <?php wp_head(); ?>
+    <style type="text/css">
+        body {
+            margin: 0;
+            font-family: Georgia, sans-serif;
+            line-height: 1.6;
+        }
+    </style>
   </head>
   <body>

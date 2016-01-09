@@ -7,26 +7,21 @@ class GerminateApiRoutes {
   }
 
   function register_api_routes() {
-    $this->query_home();
     $this->query_pages();
     $this->query_posts();
+    $this->query_post_categories();
   }
 
-  function query_home() {
-    register_rest_route( 'wp/v2', '/home', [
+  function query_post_categories() {
+    register_rest_route( 'wp/v2', '/categories', [
       'methods' => 'GET',
-      'callback' => [$this, 'query_home_callback']
+      'callback' => [$this, 'query_post_categories_callback']
       ]
     );
   }
 
-  function query_home_callback() {
-    $query = new WP_Query([
-      'posts_per_page' => '-1',
-      'post_type'      => ['page'],
-      'name'           => 'home',
-    ]);
-    $data = $this->prepare($query, $data = []);
+  function query_post_categories_callback() {
+    $data = get_categories();
     return new WP_REST_Response($data);
   }
 
@@ -75,8 +70,13 @@ class GerminateApiRoutes {
       $data[$key]->permalink = get_permalink($post->ID);
       $data[$key]->thumb_url = $this->get_post_thumbnail_src($post->ID);
       $data[$key]->thumb_alt = $this->get_post_thumbnail_alt($post->ID);
+      $data[$key]->categories = $this->get_post_categories($post->ID);
     }
     return $data;
+  }
+
+  private function get_post_categories($post_id) {
+    return get_the_category($post_id);
   }
 
   private function get_post_thumbnail_alt($post_id) {

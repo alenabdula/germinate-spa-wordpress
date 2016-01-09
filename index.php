@@ -1,25 +1,7 @@
 <?php get_header(); ?>
 <div id="app">
-    <ul>
-      <li v-show="pages" v-for="page in pages">
-        <a @click.prevent="this.single = page"
-           v-link="{ name: 'page' }"
-           href="#"
-        >{{ page.post_title }}</a>
-      </li>
-      <li>
-        <a v-link="{ name: 'article' }" href="#">Articles</a>
-        <ul>
-          <li v-for="article in articles">
-            <a @click.prevent="this.single = article" href="#">{{ article.post_title }}</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-    <router-view keep-alive
-                 :pages.sync="pages"
-                 :single.sync="single"
-                 :articles.sync="articles"
-    ></router-view>
+  <navigation :pages="pages" :single.sync="single"></navigation>
+  <posts :posts="posts" :single.sync="single"></posts>
+  <single :single="single"></single>
 </div>
 <?php get_footer(); ?>

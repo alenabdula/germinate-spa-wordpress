@@ -1,46 +1,52 @@
 Vue.config.debug = true;
 
-var Page = require('./components/Page.vue');
-Vue.component('Page', Page);
+var Navigation = require('./components/Navigation.vue');
+Vue.component('navigation', Navigation);
 
-var Article = require('./components/Article.vue');
-Vue.component('Article', Article);
+var Posts = require('./components/Posts.vue');
+Vue.component('posts', Posts);
 
-/**
- * Vue Router
- */
-var router = new VueRouter({
-  history: true,
-});
+var Single = require('./components/Single.vue');
+Vue.component('single', Single);
 
-/**
- * Application Component
- */
-var App = Vue.extend({
-  data: function() {
-    return {
-      single: false,
-      pages: false,
-      articles: false,
+new Vue({
+  el: '#app',
+  props: ['posts', 'categories', 'pages'],
+  data: {
+    single: false,
+  },
+  ready() {
+    this.get_posts();
+    this.get_categories();
+    this.get_pages();
+  },
+  methods: {
+    get_pages() {
+      this.$http.get('wp-json/wp/v2/pages').then(function (response) {
+        this.$set('pages', response.data);
+        this.$set('single', this.filterResponse(response.data, 'home')[0]);
+      }, function (response) {
+        console.error('App.vue', response.data);
+      });
+    },
+    get_posts() {
+      this.$http.get('wp-json/wp/v2/posts').then(function (response) {
+        this.$set('posts', response.data);
+      }, function (response) {
+        console.error('App.vue', response.data);
+      });
+    },
+    get_categories() {
+      this.$http.get('wp-json/wp/v2/categories').then(function (response) {
+        this.$set('categories', response.data);
+      }, function (response) {
+        console.error('App.vue', response.data);
+      });
+    },
+    filterResponse(data, slug) {
+      return data.filter(function(item){
+        return item.post_name == slug;
+      })
     }
   }
 });
-
-/**
- * Application Routes
- */
-router.map({
-    '/': {
-        component: Page,
-        name: 'page'
-    },
-    '/articles': {
-        component: Article,
-        name: 'article'
-    }
-});
-router.redirect({
-  '*': '/',
-});
-
-router.start(App, '#app');
