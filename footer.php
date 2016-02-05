@@ -1,4 +1,4 @@
-<!-- WP_FOOTER() -->
+<!-- ///// wp_footer() \\\\\ -->
 <?php wp_footer(); ?>
-<!-- WP_FOOTER() -->
-</body></html>
+  </body>
+</html>
