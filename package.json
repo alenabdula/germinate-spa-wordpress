@@ -1,4 +1,7 @@
 {
+  "name": "GerminateSPA",
+  "description": "Germinate SPA WordPress theme using VueJS",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "build": "webpack -p --config ./webpack.config.js"

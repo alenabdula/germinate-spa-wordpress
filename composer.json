@@ -1,14 +1,19 @@
 {
   "name": "alenabdula/germinate-spa",
-  "authors": [
-    {
-      "name": "Alen Abdula",
-      "email": "alenabdula@gmail.com"
+  "description": "Germinate SPA WordPress theme using VueJS",
+  "type": "wordpress-theme",
+  "minimum-stability": "stable",
+  "authors": [ { "name": "Alen Abdula", "email": "alenabdula@gmail.com" } ],
+  "repositories":[ { "type":"composer", "url":"http://wpackagist.org" } ],
+  "extra": {
+    "installer-paths": {
+      "../../plugins/{$name}/": ["wpackagist-plugin/tinymce-advanced"]
     }
-  ],
+  },
+  "require": {
+    "wpackagist-plugin/tinymce-advanced": "4.2.*"
+  },
   "autoload": {
-    "classmap": [
-      "includes/"
-    ]
+    "classmap": [ "lib/" ]
   }
 }
