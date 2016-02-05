@@ -15,12 +15,6 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.12/vue.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/vue-resource/0.5.1/vue-resource.js"></script>
     <?php wp_head(); ?>
-    <style type="text/css">
-        body {
-            margin: 0;
-            font-family: Georgia, sans-serif;
-            line-height: 1.6;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="http://cdn.rawgit.com/alenabdula/germinate/master/public/css/master.css">
   </head>
   <body>

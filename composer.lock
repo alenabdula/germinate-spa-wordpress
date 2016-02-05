@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fe13a157cec724c99d17d05847a74306",
-    "content-hash": "5b801531135020c6d8ec87146db017d4",
+    "hash": "809dd170e54ac28a2fff876fed6f052c",
+    "content-hash": "25a0a052a61e455c04c11d0f38ae23d5",
     "packages": [
         {
             "name": "composer/installers",
@@ -106,16 +106,16 @@
             "time": "2016-01-27 12:54:22"
         },
         {
-            "name": "wpackagist-plugin/tinymce-advanced",
-            "version": "4.2.8",
+            "name": "wpackagist-plugin/disable-embeds",
+            "version": "1.2.0",
             "source": {
                 "type": "svn",
-                "url": "http://plugins.svn.wordpress.org/tinymce-advanced/",
-                "reference": "tags/4.2.8"
+                "url": "http://plugins.svn.wordpress.org/disable-embeds/",
+                "reference": "trunk"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/tinymce-advanced.4.2.8.zip",
+                "url": "https://downloads.wordpress.org/plugin/disable-embeds.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -123,7 +123,7 @@
                 "composer/installers": "~1.0"
             },
             "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/tinymce-advanced/"
+            "homepage": "https://wordpress.org/plugins/disable-embeds/"
         }
     ],
     "packages-dev": [],

@@ -7,11 +7,13 @@
   "repositories":[ { "type":"composer", "url":"http://wpackagist.org" } ],
   "extra": {
     "installer-paths": {
-      "../../plugins/{$name}/": ["wpackagist-plugin/tinymce-advanced"]
+      "../../plugins/{$name}/": [
+        "wpackagist-plugin/disable-embeds"
+      ]
     }
   },
   "require": {
-    "wpackagist-plugin/tinymce-advanced": "4.2.*"
+    "wpackagist-plugin/disable-embeds": "1.2.*"
   },
   "autoload": {
     "classmap": [ "lib/" ]

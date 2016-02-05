@@ -3,7 +3,7 @@
 class GerminateRemoveEmoji {
 
   function __construct() {
-    add_action('init', array($this, 'remove_emoji_from_wordpress'));
+    add_action('init', [$this, 'remove_emoji_from_wordpress']);
   }
 
   function remove_emoji_from_wordpress() {
@@ -19,9 +19,9 @@ class GerminateRemoveEmoji {
 
   private function disable_emoj_tinymce() {
     if (is_array($plugins)) {
-      return array_diff($plugins, array('wpemoji'));
+      return array_diff($plugins, ['wpemoji']);
     }
-    return array();
+    return [];
   }
 
 }
